@@ -126,7 +126,8 @@ input:checked + .slider:before {
 .input:focus,
 .input:active,
 .input:focus-within,
-.input:target {
+.input:target,
+.input:hover {
   border: 2px solid var(--bg-btn);
   border-radius: 5px;
   outline: none;
