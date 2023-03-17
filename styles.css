@@ -183,7 +183,7 @@ li button {
   color: var(--color-secondary);
 }
 li:hover button {
-  background: var(--li-hover-color);
+  background: transparent;
 }
 
 li button:nth-child(1) {
@@ -199,12 +199,20 @@ li:hover button:nth-child(1) {
   justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
+  i {
+    margin: 0 15px;
+  }
   li {
     flex-wrap: wrap;
+    gap: 5px;
+    padding: 12px;
+  }
+  li input {
+    flex: auto;
   }
   .btn-container {
-    width: 100vw;
-    justify-content: flex-end;
-    gap: 25px;
+    width: auto;
+    margin: 10px auto;
+    display: block;
   }
 }
