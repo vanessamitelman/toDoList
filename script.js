@@ -22,6 +22,8 @@ function addToDo() {
   let toDoText = document.createElement('input');
   toDoText.type = 'text';
   toDoText.setAttribute('readonly', 'readonly');
+  let btnContainer = document.createElement('div');
+  btnContainer.classList.add('btn-container');
   let toDoEdit = document.createElement('button');
   let toDoSave = document.createElement('button');
   let toDoDelete = document.createElement('button');
@@ -49,9 +51,10 @@ function addToDo() {
     toDoText.setAttribute('readonly', 'readonly');
   }
   toDoItem.appendChild(toDoText);
-  toDoItem.appendChild(toDoEdit);
-  toDoItem.appendChild(toDoSave);
-  toDoItem.appendChild(toDoDelete);
+  btnContainer.appendChild(toDoEdit);
+  btnContainer.appendChild(toDoSave);
+  btnContainer.appendChild(toDoDelete);
+  toDoItem.appendChild(btnContainer);
   toDoList.appendChild(toDoItem);
 }
 

@@ -153,11 +153,7 @@ li {
   background: var(--bg-primary);
   color: var(--color-secondary);
 }
-@media screen and (max-width: 768px) {
-  li {
-    flex-wrap: wrap;
-  }
-}
+
 li input {
   font-size: 16px;
   flex: 1 1;
@@ -190,4 +186,19 @@ li button:nth-child(4) {
 
 li:hover button:nth-child(4) {
   visibility: visible;
+}
+.btn-container {
+  width: 24vw;
+  display: flex;
+  justify-content: space-around;
+}
+@media screen and (max-width: 768px) {
+  li {
+    flex-wrap: wrap;
+  }
+  .btn-container {
+    width: 100vw;
+    justify-content: flex-end;
+    gap: 25px;
+  }
 }
