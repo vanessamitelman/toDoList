@@ -153,6 +153,9 @@ li {
   background: var(--bg-primary);
   color: var(--color-secondary);
 }
+@media screen and (max-width:768px){
+  flex-wrap:wrap;
+}
 li input {
   font-size: 16px;
   flex: 1 1;
