@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main id="main">
+      <label class="switch">
+        <input type="checkbox" id="switch" />
+        <span class="slider round"></span>
+      </label>
+      <div class="header"><p class="title">TO DO APP</p></div>
+      <div class="create-container">
+        <input
+          type="text"
+          placeholder="Enter a Task"
+          class="input"
+          value=""
+          id="todo"
+        />
+        <button id="createBtn" class="btn" type="submit">Create Task</button>
+      </div>
+      <ol class="task-container" id="todoList"></ol>
+    </main>
+  </body>
+</html>
