@@ -122,7 +122,8 @@ input:checked + .slider:before {
   resize: none;
   outline: none;
 }
-.input:focus-visible {
+.input:focus-visible,
+.input:focus {
   border: 2px solid var(--bg-btn);
   border-radius: 5px;
   outline: none;
