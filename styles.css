@@ -180,17 +180,17 @@ li:hover button {
   background: var(--li-hover-color);
 }
 
-li button:nth-child(4) {
+li button:nth-child(1) {
   visibility: hidden;
 }
 
-li:hover button:nth-child(4) {
+li:hover button:nth-child(1) {
   visibility: visible;
 }
 .btn-container {
-  width: 24vw;
+  width: 10vw;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
   li {

@@ -51,9 +51,10 @@ function addToDo() {
     toDoText.setAttribute('readonly', 'readonly');
   }
   toDoItem.appendChild(toDoText);
+  btnContainer.appendChild(toDoDelete);
   btnContainer.appendChild(toDoEdit);
   btnContainer.appendChild(toDoSave);
-  btnContainer.appendChild(toDoDelete);
+
   toDoItem.appendChild(btnContainer);
   toDoList.appendChild(toDoItem);
 }
