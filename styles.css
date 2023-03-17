@@ -205,6 +205,35 @@ li:hover button:nth-child(1) {
   display: flex;
   justify-content: space-between;
 }
+.btn.loader {
+  position: relative;
+  padding-right: 45px;
+}
+.btn.loader::after {
+  content: '';
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  border-top: 3px solid #059669;
+  animation: spin 1s linear infinite;
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  position: absolute;
+  right: 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#empty {
+  text-align: center;
+  color: darkgray;
+}
 @media screen and (max-width: 768px) {
   i {
     margin: 0 15px;
