@@ -209,6 +209,8 @@ li:hover button:nth-child(1) {
   }
   li input {
     flex: auto;
+    margin: 0;
+    width: 75%;
   }
   .btn-container {
     width: auto;
