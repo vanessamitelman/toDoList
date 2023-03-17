@@ -140,7 +140,7 @@ li:before {
   padding-right: 10px;
 }
 i {
-  font-size: 16px;
+  font-size: 20px;
 }
 li {
   align-items: center;
@@ -153,9 +153,9 @@ li {
   background: var(--bg-primary);
   color: var(--color-secondary);
 }
-@media screen and (max-width:768px){
-  li{
-    flex-wrap:wrap;
+@media screen and (max-width: 768px) {
+  li {
+    flex-wrap: wrap;
   }
 }
 li input {
@@ -168,6 +168,11 @@ li input {
   background: transparent;
   outline: none;
   color: var(--color-secondary);
+}
+li input:not([readonly]) {
+  background: white;
+  padding: 10px 5px;
+  border-radius: 5px;
 }
 li button {
   border: none;
