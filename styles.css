@@ -214,7 +214,7 @@ li:hover button:nth-child(1) {
   }
   .btn-container {
     width: auto;
-    margin: 10px auto;
+    margin: 15px auto 0;
     display: block;
   }
   li:before {
