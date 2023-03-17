@@ -120,11 +120,12 @@ input:checked + .slider:before {
   appearance: none;
   margin: 0;
   resize: none;
+  outline: none;
 }
 .input:focus-visible {
   border: 2px solid var(--bg-btn);
   border-radius: 5px;
-  outline: 0;
+  outline: none;
 }
 .create-container {
   background: var(--bg-secondary);
