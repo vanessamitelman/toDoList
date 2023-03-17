@@ -5,6 +5,8 @@
   --bg-secondary: #fff;
   --color-primary: #fff;
   --color-secondary: #000;
+  --bg-third: #fff;
+  --color-third: #000;
   --li-hover-color: rgba(5, 150, 105, 0.1);
 }
 :root .dark-mode {
@@ -13,6 +15,7 @@
   --bg-secondary: #000;
   --color-primary: #000;
   --color-secondary: #fff;
+  --bg-third: #fff;
 }
 main {
   height: 100vh;
@@ -137,7 +140,6 @@ li:hover {
 li:before {
   content: counter(item) '. ';
   counter-increment: item;
-  padding-right: 10px;
 }
 i {
   font-size: 20px;
@@ -166,9 +168,10 @@ li input {
   color: var(--color-secondary);
 }
 li input:not([readonly]) {
-  background: white;
+  background: var(--bg-third);
   padding: 10px 5px;
   border-radius: 5px;
+  color: var(--color-third);
 }
 li button {
   border: none;
