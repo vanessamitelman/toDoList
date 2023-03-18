@@ -4,6 +4,11 @@ let toDoList = document.getElementById('todoList');
 let darkMode = document.getElementById('switch');
 let mainEl = document.getElementById('main');
 
+inputTodo.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    addToDo();
+  }
+});
 function noTask() {
   if (toDoList.innerHTML == '') {
     let emptyTask = document.createElement('div');
@@ -72,6 +77,7 @@ function addToDo() {
       readOnly();
     }
   });
+
   function readOnly() {
     toDoText.setAttribute('readonly', 'readonly');
   }
