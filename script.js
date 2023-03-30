@@ -5,10 +5,64 @@ let darkMode = document.getElementById('switch');
 let mainEl = document.getElementById('main');
 let priority = document.getElementById('important');
 let noPriority = document.getElementById('not-important');
-let counter = 0;
 
 inputTodo.focus();
 
+const slist = (target) => {
+  let items = target.getElementsByTagName('li');
+  let current = null;
+
+  for (let item of items) {
+    item.draggable = true;
+
+    item.ondragstart = (e) => {
+      current = item;
+      for (let it of items) {
+        if (it != current) {
+          it.classList.add('hint');
+        }
+      }
+    };
+
+    item.ondragenter = (e) => {
+      if (item != current) {
+        item.classList.add('active');
+      }
+    };
+
+    item.ondragleave = () => item.classList.remove('active');
+
+    item.ondragend = () => {
+      for (let it of items) {
+        it.classList.remove('hint');
+        it.classList.remove('active');
+      }
+    };
+
+    item.ondragover = (e) => e.preventDefault();
+
+    item.ondrop = (e) => {
+      e.preventDefault();
+      if (item != current) {
+        let currentPos = 0,
+          droppedPos = 0;
+        for (let it = 0; it < items.length; it++) {
+          if (current == items[it]) {
+            currentPos = it;
+          }
+          if (item == items[it]) {
+            droppedPos = it;
+          }
+        }
+        if (currentPos < droppedPos) {
+          item.parentNode.insertBefore(current, item.nextSibling);
+        } else {
+          item.parentNode.insertBefore(current, item);
+        }
+      }
+    };
+  }
+};
 const noTask = () => {
   if (toDoList.innerHTML == '') {
     let emptyTask = document.createElement('div');
@@ -30,7 +84,6 @@ const addLoader = () => {
 };
 
 const addToDo = () => {
-  counter++;
   inputTodo.focus();
   let val = inputTodo.value;
   if (val == '') return;
@@ -38,7 +91,7 @@ const addToDo = () => {
   let toDoItem = document.createElement('li');
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
-  checkbox.id = 'check' + counter;
+
   checkbox.classList.add('priority');
   let toDoText = document.createElement('input');
   toDoText.type = 'text';
@@ -77,11 +130,12 @@ const addToDo = () => {
     btnContainer.appendChild(toDoDelete);
     btnContainer.appendChild(toDoEdit);
     btnContainer.appendChild(toDoSave);
-
     toDoItem.appendChild(btnContainer);
+    toDoItem.classList.add('item');
     toDoList.appendChild(toDoItem);
     removeNoTask();
     createBtn.classList.remove('loader');
+    slist(toDoList);
   }, 800);
 };
 
@@ -116,4 +170,7 @@ noPriority.addEventListener('click', () => {
     }
   }
 });
+
 noTask();
+
+//drag and drop

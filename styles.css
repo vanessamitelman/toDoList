@@ -11,6 +11,10 @@
   --li-hover-color: rgba(5, 150, 105, 0.1);
   --form-control-color: #000;
   --form-control-disabled: #959495;
+  --hint-border:border: 1px solid #ffc49a;
+  --hint-bg:#feffb4;
+  --active-border:1px solid #ffa5a5;
+  --active-bg:#ffe7e7;
 }
 
 :root .dark-mode {
@@ -22,6 +26,10 @@
   --bg-third: #fff;
   --form-control-color: #fff;
   --form-control-disabled: #959495;
+  --hint-border:border: 1px solid #ffc49a;
+  --hint-bg: #feffb4;
+  --active-border:1px solid #ffa5a5;
+  --active-bg: #ffe7e7;
 }
 
 main {
@@ -163,6 +171,22 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+}
+.task-container li.hint {
+  border: var(--hint-border);
+  background: var(--hint-bg);
+  color: #000;
+}
+.task-container li.hint input {
+  color: #000;
+}
+.task-container li.active {
+  border: var(--active-border);
+  background: var(--active-bg);
+  color: #000;
+}
+.task-container li.active input {
+  color: #000;
 }
 
 li:hover {
