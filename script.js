@@ -3,6 +3,10 @@ let inputTodo = document.getElementById('todo');
 let toDoList = document.getElementById('todoList');
 let darkMode = document.getElementById('switch');
 let mainEl = document.getElementById('main');
+let priority = document.getElementById('important');
+let noPriority = document.getElementById('not-important');
+let counter = 0;
+
 inputTodo.focus();
 
 const noTask = () => {
@@ -11,9 +15,11 @@ const noTask = () => {
     emptyTask.setAttribute('id', 'empty');
     emptyTask.textContent = 'Please Add A New Task';
     toDoList.appendChild(emptyTask);
+    document.getElementById('important-btns').classList.add('hide');
   }
 };
 const removeNoTask = () => {
+  document.getElementById('important-btns').classList.remove('hide');
   if (document.getElementById('empty')) {
     document.getElementById('empty').remove();
   }
@@ -24,11 +30,16 @@ const addLoader = () => {
 };
 
 const addToDo = () => {
+  counter++;
   inputTodo.focus();
   let val = inputTodo.value;
   if (val == '') return;
   addLoader();
   let toDoItem = document.createElement('li');
+  let checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = 'check' + counter;
+  checkbox.classList.add('priority');
   let toDoText = document.createElement('input');
   toDoText.type = 'text';
   toDoText.setAttribute('readonly', 'readonly');
@@ -61,6 +72,7 @@ const addToDo = () => {
   });
 
   setTimeout(() => {
+    toDoItem.appendChild(checkbox);
     toDoItem.appendChild(toDoText);
     btnContainer.appendChild(toDoDelete);
     btnContainer.appendChild(toDoEdit);
@@ -86,5 +98,22 @@ darkMode.addEventListener('click', () => {
     mainEl.classList.remove('dark-mode');
   }
 });
-
+priority.addEventListener('click', () => {
+  const allPriority = document.querySelectorAll('.priority');
+  for (let i = 0; i < allPriority.length; i++) {
+    if (allPriority[i].checked) {
+      allPriority[i].parentNode.classList.add('important');
+      allPriority[i].checked = false;
+    }
+  }
+});
+noPriority.addEventListener('click', () => {
+  const allPriority = document.querySelectorAll('.priority');
+  for (let i = 0; i < allPriority.length; i++) {
+    if (allPriority[i].checked) {
+      allPriority[i].parentNode.classList.remove('important');
+      allPriority[i].checked = false;
+    }
+  }
+});
 noTask();
