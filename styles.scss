@@ -9,6 +9,8 @@
   --bg-third: #fff;
   --color-third: #000;
   --li-hover-color: rgba(5, 150, 105, 0.1);
+  --form-control-color: #000;
+  --form-control-disabled: #959495;
 }
 :root .dark-mode {
   --bg-primary: #000;
@@ -17,6 +19,8 @@
   --color-primary: #000;
   --color-secondary: #fff;
   --bg-third: #fff;
+  --form-control-color: #fff;
+  --form-control-disabled: #959495;
 }
 main {
   height: 100vh;
@@ -292,6 +296,15 @@ li {
   justify-content: center;
   padding: 20px;
   background: var(--bg-secondary);
+}
+@media screen and (max-width: 500px) {
+  .important-btns {
+    flex-direction: column;
+    gap: 10px;
+    .btn {
+      margin: 0;
+    }
+  }
 }
 .hide {
   display: none;
