@@ -362,7 +362,7 @@ li input[type=checkbox]:disabled {
     display: block;
   }
   li:before {
-    margin-right: 5px;
+    margin-right: 15px;
   }
   li button:nth-child(1) {
     visibility: visible;
