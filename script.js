@@ -3,45 +3,27 @@ let inputTodo = document.getElementById('todo');
 let toDoList = document.getElementById('todoList');
 let darkMode = document.getElementById('switch');
 let mainEl = document.getElementById('main');
+inputTodo.focus();
 
-inputTodo.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
-    addToDo();
-  }
-});
-function noTask() {
+const noTask = () => {
   if (toDoList.innerHTML == '') {
     let emptyTask = document.createElement('div');
     emptyTask.setAttribute('id', 'empty');
     emptyTask.textContent = 'Please Add A New Task';
     toDoList.appendChild(emptyTask);
   }
-}
-function removeNoTask() {
+};
+const removeNoTask = () => {
   if (document.getElementById('empty')) {
     document.getElementById('empty').remove();
   }
-}
-function addLoader() {
+};
+const addLoader = () => {
   if (createBtn.classList.contains('loader')) return;
   createBtn.classList.add('loader');
-}
-function removeLoader() {
-  createBtn.classList.remove('loader');
-}
+};
 
-darkMode.addEventListener('click', () => {
-  if (darkMode.checked == true) {
-    mainEl.classList.add('dark-mode');
-  } else {
-    mainEl.classList.remove('dark-mode');
-  }
-});
-
-inputTodo.focus();
-noTask();
-
-function addToDo() {
+const addToDo = () => {
   inputTodo.focus();
   let val = inputTodo.value;
   if (val == '') return;
@@ -70,17 +52,14 @@ function addToDo() {
     noTask();
   });
   toDoSave.addEventListener('click', () => {
-    readOnly();
+    toDoText.setAttribute('readonly', 'readonly');
   });
   toDoText.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-      readOnly();
+      toDoText.setAttribute('readonly', 'readonly');
     }
   });
 
-  function readOnly() {
-    toDoText.setAttribute('readonly', 'readonly');
-  }
   setTimeout(() => {
     toDoItem.appendChild(toDoText);
     btnContainer.appendChild(toDoDelete);
@@ -90,8 +69,22 @@ function addToDo() {
     toDoItem.appendChild(btnContainer);
     toDoList.appendChild(toDoItem);
     removeNoTask();
-    removeLoader();
+    createBtn.classList.remove('loader');
   }, 800);
-}
+};
 
 createBtn.addEventListener('click', addToDo);
+inputTodo.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    addToDo();
+  }
+});
+darkMode.addEventListener('click', () => {
+  if (darkMode.checked == true) {
+    mainEl.classList.add('dark-mode');
+  } else {
+    mainEl.classList.remove('dark-mode');
+  }
+});
+
+noTask();
