@@ -326,6 +326,7 @@ li input[type='checkbox']:disabled {
   .important-btns {
     flex-direction: column;
     gap: 10px;
+    text-align: center;
   }
 }
 .hide {
