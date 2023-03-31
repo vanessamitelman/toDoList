@@ -5,64 +5,10 @@ let darkMode = document.getElementById('switch');
 let mainEl = document.getElementById('main');
 let priority = document.getElementById('important');
 let noPriority = document.getElementById('not-important');
+let count = 0;
 
 inputTodo.focus();
 
-const slist = (target) => {
-  let items = target.getElementsByTagName('li');
-  let current = null;
-
-  for (let item of items) {
-    item.draggable = true;
-
-    item.ondragstart = (e) => {
-      current = item;
-      for (let it of items) {
-        if (it != current) {
-          it.classList.add('hint');
-        }
-      }
-    };
-
-    item.ondragenter = (e) => {
-      if (item != current) {
-        item.classList.add('active');
-      }
-    };
-
-    item.ondragleave = () => item.classList.remove('active');
-
-    item.ondragend = () => {
-      for (let it of items) {
-        it.classList.remove('hint');
-        it.classList.remove('active');
-      }
-    };
-
-    item.ondragover = (e) => e.preventDefault();
-
-    item.ondrop = (e) => {
-      e.preventDefault();
-      if (item != current) {
-        let currentPos = 0,
-          droppedPos = 0;
-        for (let it = 0; it < items.length; it++) {
-          if (current == items[it]) {
-            currentPos = it;
-          }
-          if (item == items[it]) {
-            droppedPos = it;
-          }
-        }
-        if (currentPos < droppedPos) {
-          item.parentNode.insertBefore(current, item.nextSibling);
-        } else {
-          item.parentNode.insertBefore(current, item);
-        }
-      }
-    };
-  }
-};
 const noTask = () => {
   if (toDoList.innerHTML == '') {
     let emptyTask = document.createElement('div');
@@ -84,11 +30,13 @@ const addLoader = () => {
 };
 
 const addToDo = () => {
+  count++;
   inputTodo.focus();
   let val = inputTodo.value;
   if (val == '') return;
   addLoader();
   let toDoItem = document.createElement('li');
+  toDoItem.setAttribute('draggable', true);
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
 
@@ -132,10 +80,28 @@ const addToDo = () => {
     btnContainer.appendChild(toDoSave);
     toDoItem.appendChild(btnContainer);
     toDoItem.classList.add('item');
+    toDoItem.id = count;
     toDoList.appendChild(toDoItem);
     removeNoTask();
     createBtn.classList.remove('loader');
-    slist(toDoList);
+
+    //drag and drop
+    const items = toDoList.querySelectorAll('.item');
+
+    items.forEach((item) => {
+      itemNode = document.getElementById(item.id);
+      if (!itemNode.hasAttribute('data-drag')) {
+        item.addEventListener('dragstart', () => {
+          // Adding dragging class to item after a delay
+          itemNode.setAttribute('data-drag', true);
+          setTimeout(() => item.classList.add('dragging'), 0);
+        });
+        // Removing dragging class from item on dragend event
+        item.addEventListener('dragend', () =>
+          item.classList.remove('dragging')
+        );
+      }
+    });
   }, 800);
 };
 
@@ -173,4 +139,21 @@ noPriority.addEventListener('click', () => {
 
 noTask();
 
-//drag and drop
+//draggable
+const initSortableList = (e) => {
+  e.preventDefault();
+  const draggingItem = document.querySelector('.dragging');
+  // Getting all items except currently dragging and making array of them
+  let siblings = [...toDoList.querySelectorAll('.item:not(.dragging)')];
+
+  // Finding the sibling after which the dragging item should be placed
+  let nextSibling = siblings.find((sibling) => {
+    return e.clientY <= Number(sibling.offsetTop + sibling.offsetHeight / 2);
+  });
+
+  // Inserting the dragging item before the found sibling
+  toDoList.insertBefore(draggingItem, nextSibling);
+};
+
+toDoList.addEventListener('dragover', initSortableList);
+toDoList.addEventListener('dragenter', (e) => e.preventDefault());
